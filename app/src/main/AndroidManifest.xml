@@ -22,15 +22,22 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
-            android:noHistory="true"
-            android:screenOrientation="sensorLandscape">
+            android:name=".OptionsActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+        <activity android:name=".category.CategoryActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:noHistory="true"
+            android:screenOrientation="sensorPortrait" />
     </application>
 
 </manifest>
