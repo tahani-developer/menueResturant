@@ -50,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (v.getId()) {
             case R.id.login_button:
+                SendSocket send =new SendSocket(LoginActivity.this);
+                send.sendMessage();
                 users = databaseHandler.getAllUSER();
                 boolean found = false;
                 String usernameText = username.getText().toString();
