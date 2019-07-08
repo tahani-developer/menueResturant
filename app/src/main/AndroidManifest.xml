@@ -27,7 +27,12 @@
         <activity
             android:name=".OptionsActivity"
             android:screenOrientation="sensorPortrait"></activity>
-        <activity android:name=".category.CategoryActivity" />
+        <activity android:name=".category.CategoryActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+
+        <activity android:name=".category.ItemActivaty"
+            android:screenOrientation="sensorPortrait"></activity>
+
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="sensorPortrait">

@@ -1,5 +1,6 @@
 package com.example.falconssoftcompletedmenu;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.falconssoftcompletedmenu.category.CategoryActivity;
 import com.example.falconssoftcompletedmenu.models.Tables;
 
 import java.util.ArrayList;
@@ -61,6 +63,9 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.options_done:
+                Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
+//                categoryIntent.putExtra("userName", usernameText);
+                startActivity(categoryIntent);
                 break;
             case R.id.options_add_floor:
 //                if (flagTable == 1)
