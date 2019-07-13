@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.falconssoftcompletedmenu.R;
 import com.example.falconssoftcompletedmenu.SendSocket;
+import com.example.falconssoftcompletedmenu.SettingOrder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     TextView UserNameText;
     LinearLayout swipeRefresh;
-    Button CallCaptain;
+    Button CallCaptain,makeOrder;
 
 
     public List<String> list = new ArrayList<>();
@@ -59,6 +60,7 @@ public class CategoryActivity extends AppCompatActivity {
 //        categoryList=baseHandler.getAllItems();
         swipeRefresh = findViewById(R.id.swipeRefresh);
         CallCaptain=findViewById(R.id.call);
+        makeOrder=findViewById(R.id.makeOrder);
 
         list.add("Burger1");
         list.add("Burger2");
@@ -107,6 +109,19 @@ public class CategoryActivity extends AppCompatActivity {
 
             }
         });
+
+        makeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SettingOrder.Item.clear();
+                SettingOrder.ItemsOrder.clear();
+                SettingOrder.index=0;
+
+
+            }
+        });
+
 //
 
 
@@ -188,6 +203,7 @@ public class CategoryActivity extends AppCompatActivity {
                 itemIntent.putExtra("categoryName",list.get(i));
                 itemIntent.putExtra("catPic",pic.get(i));
                 context.startActivity(itemIntent);
+                    SettingOrder.indexCat=i;
 //                CustomIntent.customType(context,"left-to-right");
 //             //   bottom-to-up "left-to-right"
 //                /**left-to-right

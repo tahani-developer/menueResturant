@@ -11,11 +11,13 @@ public class Items {
     private String description;
     private double price;
     private Bitmap ItemPic;
+    private int indexOfItem;
+    private int indexOfCat;
 
     public Items() {
     }
 
-    public Items(String categoryName, String itemName, int itemBarcode, Bitmap categoryPic, String description, double price, Bitmap itemPic) {
+    public Items(String categoryName, String itemName, int itemBarcode, Bitmap categoryPic, String description, double price, Bitmap itemPic,int indexOfItem,int indexOfCat) {
         this.categoryName = categoryName;
         this.itemName = itemName;
         this.itemBarcode = itemBarcode;
@@ -23,6 +25,8 @@ public class Items {
         this.description = description;
         this.price = price;
         ItemPic = itemPic;
+        this.indexOfItem=indexOfItem;
+        this.indexOfCat=indexOfCat;
     }
 
     public String getCategoryName() {
@@ -79,5 +83,21 @@ public class Items {
 
     public void setItemPic(Bitmap itemPic) {
         ItemPic = itemPic;
+    }
+
+    public int getIndexOfItem() {
+        return indexOfItem;
+    }
+
+    public void setIndexOfItem(int indexOfItem) {
+        this.indexOfItem = indexOfItem;
+    }
+
+    public int getIndexOfCat() {
+        return indexOfCat;
+    }
+
+    public void setIndexOfCat(int indexOfCat) {
+        this.indexOfCat = indexOfCat;
     }
 }
