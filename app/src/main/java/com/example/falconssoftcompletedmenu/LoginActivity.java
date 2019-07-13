@@ -50,8 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         switch (v.getId()) {
             case R.id.login_button:
-                SendSocket send =new SendSocket(LoginActivity.this);
-                send.sendMessage();
+//                SendSocket send =new SendSocket(LoginActivity.this);
+//                send.sendMessage();
                 users = databaseHandler.getAllUSER();
                 boolean found = false;
                 String usernameText = username.getText().toString();
@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (usernameText.equals("1")) {
                             if (passwordText.equals("1")) {
                                 Intent categoryIntent = new Intent(LoginActivity.this, OptionsActivity.class);
-//                                categoryIntent.putExtra("userName", usernameText);
+                                categoryIntent.putExtra("userName", usernameText);
                                 startActivity(categoryIntent);
                             } else {
                                 Toast.makeText(this, "Wrong in username or password!", Toast.LENGTH_SHORT).show();

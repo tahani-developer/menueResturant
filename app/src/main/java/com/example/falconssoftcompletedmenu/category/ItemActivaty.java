@@ -3,43 +3,39 @@ package com.example.falconssoftcompletedmenu.category;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.GradientDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.azoft.carousellayoutmanager.CarouselLayoutManager;
-import com.azoft.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.azoft.carousellayoutmanager.CenterScrollListener;
+import com.example.falconssoftcompletedmenu.ListOfOrder;
 import com.example.falconssoftcompletedmenu.R;
+import com.example.falconssoftcompletedmenu.SettingOrder;
+import com.example.falconssoftcompletedmenu.models.Items;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cdflynn.android.library.turn.TurnLayoutManager;
 
 import static android.widget.LinearLayout.HORIZONTAL;
 
 public class ItemActivaty extends AppCompatActivity {
 
-    TextView UserNameText;
+    TextView catName;
+    ImageView catPic,orderImage;
     LinearLayout swipeRefresh;
 
 
@@ -54,11 +50,15 @@ public class ItemActivaty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_activaty);
         Intent userName = getIntent();
-        String users = userName.getStringExtra("userName");
+        String categoryName = userName.getStringExtra("categoryName");
+        String CatPic = userName.getStringExtra("catPic");
+        catName =(TextView)findViewById(R.id.catName);
+        catPic =(ImageView)findViewById(R.id.catImage);
+        orderImage=(ImageView)findViewById(R.id.orderIcon);
 
-//        UserNameText=(TextView)findViewById(R.id.userName);
 
-//        UserNameText.setText(users);
+        catName.setText(categoryName);
+        catPic.setBackgroundResource(getImage(CatPic));
 //        baseHandler=new DatabaseHandler(CategoryActivity.this);
 //        categoryList=baseHandler.getAllItems();
 //        swipeRefresh = findViewById(R.id.swipeRefresh);
@@ -86,15 +86,26 @@ public class ItemActivaty extends AppCompatActivity {
         pic.add("burger");
         pic.add("botato");
 
+        orderImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent order=new Intent(ItemActivaty.this, ListOfOrder.class);
+                startActivity(order);
+
+            }
+        });
+
+
+
         // vertical and cycle layout
         final LinearLayoutManager layoutManager;
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(HORIZONTAL);
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.itemRecycler);
         recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new TestAdapter(this, list));
-//        recyclerView.addOnScrollListener(new CenterScrollListener());
+
         recyclerView.setItemViewCacheSize(list.size());
 
 
@@ -115,11 +126,14 @@ public class ItemActivaty extends AppCompatActivity {
     }
 
 
-    class CViewHolder extends RecyclerView.ViewHolder {
+    static class CViewHolder extends RecyclerView.ViewHolder {
 
         TextView categoryName,itemDescription,addQty,subQty,balance,Qty;
         ImageView categoryImage;
+      public static   Button addOrder;
 //        LinearLayout layMain;
+
+        List<Items>ListOrder=new ArrayList<>();
 
         public CViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -130,7 +144,9 @@ public class ItemActivaty extends AppCompatActivity {
             balance = itemView.findViewById(R.id.TotalPricre);
             Qty = itemView.findViewById(R.id.Qty);
 
+
             categoryImage = itemView.findViewById(R.id.item_imge);
+            addOrder=itemView.findViewById(R.id.addToOrder);
 //            layMain = itemView.findViewById(R.id.layMain);
         }
     }
@@ -162,7 +178,28 @@ public class ItemActivaty extends AppCompatActivity {
 //            cViewHolder.layMain.setId(i);
 //        cViewHolder.categoryName.setText(list.get(i).getCategoryName());
             cViewHolder.categoryImage.setBackgroundResource(getImage(pic.get(i)));
+            cViewHolder.addOrder.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Items item=new Items();
 
+                    item.setItemName(cViewHolder.categoryName.getText().toString());
+//                    item.setItemPic(pic.get(i));
+                    item.setItemBarcode(Integer.parseInt(cViewHolder.Qty.getText().toString()));
+                    item.setCategoryName(catName.getText().toString());
+                    item.setPrice(Double.parseDouble(cViewHolder.Qty.getText().toString()));
+
+                    SettingOrder.ItemsOrder.add(item);
+
+                    Log.e("List"+i,"= "+SettingOrder.ItemsOrder.get(SettingOrder.index).getItemName()
+                            +"\n"+SettingOrder.ItemsOrder.get(SettingOrder.index).getItemBarcode()+"\n"+
+                            SettingOrder.ItemsOrder.get(SettingOrder.index).getCategoryName());
+
+                    SettingOrder.index+=1;
+
+
+                }
+            });
 
 //            cViewHolder.layMain.setOnClickListener(new View.OnClickListener() {
 //                @RequiresApi(api = Build.VERSION_CODES.N)

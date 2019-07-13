@@ -28,14 +28,14 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
 
     private TableLayout floorNo, tableNo;
     private EditText noOfSeats;
-    private TextView addFloor, addTable;
+    private TextView addFloor, addTable,UserNameText;
     private Button saveOptions;
     private static int flagFloor = 0; // up
     private static int flagTable = 0; // up
 
     private List<Tables> tablesList = new ArrayList<>();
     private DatabaseHandler databaseHandler;
-
+    String users;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +50,22 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         addFloor = findViewById(R.id.options_add_floor);
         addTable = findViewById(R.id.options_add_table);
 
+
         saveOptions = findViewById(R.id.options_done);
         addFloor.setOnClickListener(this);
         addTable.setOnClickListener(this);
 
         saveOptions.setOnClickListener(this);
+
+
+        Intent userName = getIntent();
+       users = userName.getStringExtra("userName");
+
+        UserNameText=(TextView)findViewById(R.id.userName);
+
+        UserNameText.setText(users);
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -64,7 +75,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
             case R.id.options_done:
                 Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
-//                categoryIntent.putExtra("userName", usernameText);
+                categoryIntent.putExtra("userName", users);
                 startActivity(categoryIntent);
                 break;
             case R.id.options_add_floor:

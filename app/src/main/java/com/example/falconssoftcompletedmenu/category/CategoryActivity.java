@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import android.widget.Toast;
 
 
 import com.example.falconssoftcompletedmenu.R;
+import com.example.falconssoftcompletedmenu.SendSocket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +36,7 @@ public class CategoryActivity extends AppCompatActivity {
 
     TextView UserNameText;
     LinearLayout swipeRefresh;
+    Button CallCaptain;
 
 
     public List<String> list = new ArrayList<>();
@@ -49,12 +52,13 @@ public class CategoryActivity extends AppCompatActivity {
         Intent userName = getIntent();
         String users = userName.getStringExtra("userName");
 
-//        UserNameText=(TextView)findViewById(R.id.userName);
+        UserNameText=(TextView)findViewById(R.id.userName);
 
-//        UserNameText.setText(users);
+        UserNameText.setText(users);
 //        baseHandler=new DatabaseHandler(CategoryActivity.this);
 //        categoryList=baseHandler.getAllItems();
         swipeRefresh = findViewById(R.id.swipeRefresh);
+        CallCaptain=findViewById(R.id.call);
 
         list.add("Burger1");
         list.add("Burger2");
@@ -117,6 +121,17 @@ public class CategoryActivity extends AppCompatActivity {
 //
 //
 //    }
+
+
+        CallCaptain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SendSocket sendSocket=new SendSocket(CategoryActivity.this);
+                sendSocket.sendMessage();
+
+            }
+        });
     }
 
 
@@ -170,7 +185,8 @@ public class CategoryActivity extends AppCompatActivity {
                     Log.e("item ...", "i" + v.getId() + "-->" + i + "===>" + list.get(i));
 
                 Intent itemIntent=new Intent(context,ItemActivaty.class);
-//                itemIntent.putExtra("categoryName",list.get(i));
+                itemIntent.putExtra("categoryName",list.get(i));
+                itemIntent.putExtra("catPic",pic.get(i));
                 context.startActivity(itemIntent);
 //                CustomIntent.customType(context,"left-to-right");
 //             //   bottom-to-up "left-to-right"

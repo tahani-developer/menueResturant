@@ -24,10 +24,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".OptionsActivity"
             android:screenOrientation="sensorPortrait"></activity>
+
         <activity android:name=".category.CategoryActivity"
+            android:screenOrientation="sensorPortrait"></activity>
+
+        <activity android:name=".ListOfOrder"
             android:screenOrientation="sensorPortrait"></activity>
 
         <activity android:name=".category.ItemActivaty"

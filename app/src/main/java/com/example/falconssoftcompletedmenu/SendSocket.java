@@ -44,8 +44,8 @@ public class SendSocket {
 //                            if (checkHosts("10.10.100.22")){
 //                            if (obj3.toString().length() > 2) {
                                 try {
-                                    String ip="10.10.100.22";
-                                    Socket  s = new Socket("10.10.100.22", 9008);
+                                    String ip="10.10.100.21";
+                                    Socket  s = new Socket("10.10.100.21", 9008);
                                     out = s.getOutputStream();
                                     output = new PrintWriter(out);
                                     output.println("table#"+" "+4+","+"SEC#"+" "+1+","+"#SITE"+" "+3);
