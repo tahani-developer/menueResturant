@@ -181,7 +181,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return items;
     }
 
-
     public List<Users> getAllUSER() {
         List<Users> usersList = new ArrayList<Users>();
 
@@ -200,6 +199,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return usersList;
+    }
+
+    public List<Tables> getTablesInfo() {
+        List<Tables> tables = new ArrayList<Tables>();
+
+        String selectQuery = "SELECT  * FROM " + TABLES_TABLE;
+        db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Tables tables1 = new Tables();
+
+                tables1.setSectionNo(cursor.getString(0));
+                tables1.setTableNo(cursor.getInt(1));
+                tables1.setNoOfSeits(cursor.getInt(2));
+
+                tables.add(tables1);
+            } while (cursor.moveToNext());
+        }
+        return tables;
     }
 
     //////////////////////////////////////////////////////// DELETE ///////////////////////////////////////////////
