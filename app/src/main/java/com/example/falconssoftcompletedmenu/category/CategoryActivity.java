@@ -65,16 +65,16 @@ public class CategoryActivity extends AppCompatActivity {
         makeOrder = findViewById(R.id.makeOrder);
 
 //        list.add("");
-        list.add("Burger1");
-        list.add("Burger2");
-        list.add("Burger3");
-        list.add("Burger4");
-        list.add("Burger5");
-        list.add("Burger6");
-        list.add("Burger7");
-        list.add("Burger8");
-        list.add("Burger9");
-        list.add("Burger10");
+        list.add("Barbecue");
+        list.add("Chips");
+        list.add("Fish finger");
+        list.add("Chips");
+        list.add("Cookies");
+        list.add("Barbecue");
+        list.add("Turkey Sandwich");
+        list.add("Fried Potato");
+        list.add("Burger");
+        list.add("Fried Potato");
 //        list.add("");
 
 //        pic.add("");
@@ -94,9 +94,9 @@ public class CategoryActivity extends AppCompatActivity {
         layoutManager = new TurnLayoutManager(this,
                 TurnLayoutManager.Gravity.START,
                 TurnLayoutManager.Orientation.HORIZONTAL,
-                300,
-                300,
-                false);
+                200,
+                200,
+                true);
 
 
         recyclerView = (RecyclerView) findViewById(R.id.categoryRecycler);

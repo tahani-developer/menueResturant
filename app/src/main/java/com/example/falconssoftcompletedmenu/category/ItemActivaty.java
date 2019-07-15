@@ -35,7 +35,7 @@ import static android.widget.LinearLayout.VERTICAL;
 public class ItemActivaty extends AppCompatActivity {
 
     private TextView catName;
-    private ImageView catPic, orderImage, mo1;
+    private ImageView catPic, orderImage, addToOrder;
     private LinearLayout swipeRefresh;
     private RecyclerView recyclerView;
     private List<Items> itemList;
@@ -52,7 +52,7 @@ public class ItemActivaty extends AppCompatActivity {
         catName = (TextView) findViewById(R.id.catName);
         catPic = (ImageView) findViewById(R.id.catImage);
         orderImage = (ImageView) findViewById(R.id.orderIcon);
-        mo1 = (ImageView) findViewById(R.id.mo1);
+        addToOrder = (ImageView) findViewById(R.id.items_btn_addToOrder);
 
         itemList = new ArrayList<>();
 
@@ -61,7 +61,6 @@ public class ItemActivaty extends AppCompatActivity {
 //        baseHandler=new DatabaseHandler(CategoryActivity.this);
 //        SettingOrder.Item=baseHandler.getAllItems();
 //        swipeRefresh = findViewById(R.id.swipeRefresh);
-
 
         for (int i = 0; i < 10; i++) {
             itemList.clear();
@@ -85,7 +84,6 @@ public class ItemActivaty extends AppCompatActivity {
                 orderListDialog();
             }
         });
-
 
         for (int x = 0; x < SettingOrder.ItemsOrder.size(); x++) {
             if (SettingOrder.ItemsOrder.get(x).getIndexOfItem() != -1) {
@@ -281,9 +279,7 @@ public class ItemActivaty extends AppCompatActivity {
             return list.size();
 //            return Integer.MAX_VALUE;
         }
-
     }
-
 
     public void orderListDialog() {
         Dialog dialog = new Dialog(ItemActivaty.this);
@@ -301,17 +297,14 @@ public class ItemActivaty extends AppCompatActivity {
         recyclerView.setItemViewCacheSize(SettingOrder.ItemsOrder.size());
 
         dialog.show();
-
     }
 
 
     class CViewItemHolder extends RecyclerView.ViewHolder {
-
         TextView itemName;
         TextView balance, Qty;
         ImageView itemPic;
         ImageButton delete;
-
 //        List<Items>ListOrder=new ArrayList<>();
 
         public CViewItemHolder(@NonNull View itemView) {
@@ -368,8 +361,6 @@ public class ItemActivaty extends AppCompatActivity {
                     notifyDataSetChanged();
                 }
             });
-
-
         }
 
         @Override
@@ -409,19 +400,19 @@ public class ItemActivaty extends AppCompatActivity {
 
     public void motionEvent(String image) {
 
-        mo1.setVisibility(View.VISIBLE);
-        mo1.setBackgroundResource(getImage(image));
+        addToOrder.setVisibility(View.VISIBLE);
+        addToOrder.setBackgroundResource(getImage(image));
         int p1[] = new int[2];
         int p2[] = new int[2];
         orderImage.getLocationInWindow(p1);
-        mo1.getLocationInWindow(p2);
+        addToOrder.getLocationInWindow(p2);
 
-        TranslateAnimation animation = new TranslateAnimation(0, orderImage.getX() - mo1.getX(), 0, orderImage.getY() - mo1.getY());
+        TranslateAnimation animation = new TranslateAnimation(0, orderImage.getX() - addToOrder.getX(), 0, orderImage.getY() - addToOrder.getY());
         animation.setRepeatMode(0);
         animation.setDuration(1000);
         animation.setFillAfter(false);
-        mo1.startAnimation(animation);
-        mo1.setVisibility(View.INVISIBLE);
+        addToOrder.startAnimation(animation);
+        addToOrder.setVisibility(View.INVISIBLE);
 
 
     }
