@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,7 +35,7 @@ import static android.widget.LinearLayout.VERTICAL;
 public class ItemActivaty extends AppCompatActivity {
 
     TextView catName;
-    ImageView catPic, orderImage;
+    ImageView catPic, orderImage,mo1;
     LinearLayout swipeRefresh;
     RecyclerView recyclerView;
     List<Items>itemList;
@@ -51,6 +52,7 @@ public class ItemActivaty extends AppCompatActivity {
         catName = (TextView) findViewById(R.id.catName);
         catPic = (ImageView) findViewById(R.id.catImage);
         orderImage = (ImageView) findViewById(R.id.orderIcon);
+        mo1= (ImageView) findViewById(R.id.mo1);
 
         itemList=new ArrayList<>();
 
@@ -64,16 +66,16 @@ public class ItemActivaty extends AppCompatActivity {
 
 for(int i=0;i<10;i++) {
     itemList.clear();
-    itemList.add(new Items("Burger1", "Burger1", -1, null, "fw", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger2", "Burger2", -1, null, "coc", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger3", "Burger3", -1, null, "mozaral", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger4", "Burger4", -1, null, "der", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger5", "Burger5", -1, null, "coc", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger6", "Burger6", -1, null, "fe", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger7", "Burger7", -1, null, "san", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger8", "Burger8", -1, null, "botato", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger9", "Burger9", -1, null, "burger", 0.0, null, -1, -1));
-    itemList.add(new Items("Burger10","Burger10",-1, null, "botato", 0.0, null, -1, -1));
+    itemList.add(new Items("Burger1", "Burger1", -1, null, "fw", 2.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger2", "Burger2", -1, null, "coc", 2.50, null, -1, -1,0,0));
+    itemList.add(new Items("Burger3", "Burger3", -1, null, "mozaral", 1.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger4", "Burger4", -1, null, "der", 1.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger5", "Burger5", -1, null, "coc", 1.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger6", "Burger6", -1, null, "fe", 0.5, null, -1, -1,0,0));
+    itemList.add(new Items("Burger7", "Burger7", -1, null, "san", 0.25, null, -1, -1,0,0));
+    itemList.add(new Items("Burger8", "Burger8", -1, null, "botato", 1.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger9", "Burger9", -1, null, "burger", 1.0, null, -1, -1,0,0));
+    itemList.add(new Items("Burger10","Burger10",-1, null, "botato", 1.0, null, -1, -1,0,0));
 
     SettingOrder.Item.add(i,itemList);
 }
@@ -89,8 +91,10 @@ for(int i=0;i<10;i++) {
         for(int x=0;x<SettingOrder.ItemsOrder.size();x++){
             if(SettingOrder.ItemsOrder.get(x).getIndexOfItem()!=-1) {
                 if(SettingOrder.indexCat==SettingOrder.ItemsOrder.get(x).getIndexOfCat()){//this for ----
-                SettingOrder.Item.get(SettingOrder.indexCat).get(SettingOrder.ItemsOrder.get(x).getIndexOfItem()).setPrice(SettingOrder.ItemsOrder.get(x).getPrice());
-            }}
+                SettingOrder.Item.get(SettingOrder.indexCat).get(SettingOrder.ItemsOrder.get(x).getIndexOfItem()).setQTY(SettingOrder.ItemsOrder.get(x).getQTY());
+                SettingOrder.Item.get(SettingOrder.indexCat).get(SettingOrder.ItemsOrder.get(x).getIndexOfItem()).setTotal(SettingOrder.ItemsOrder.get(x).getTotal());
+
+                }}
         }
 
         final LinearLayoutManager layoutManager;
@@ -122,7 +126,7 @@ for(int i=0;i<10;i++) {
 
     static class CViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ItemName, itemDescription, addQty, subQty, balance, Qty;
+        TextView ItemName, itemDescription, addQty, subQty, balance, Qty,price;
         ImageView itemImage;
         public static Button addOrder;
 
@@ -136,6 +140,7 @@ for(int i=0;i<10;i++) {
             Qty = itemView.findViewById(R.id.Qty);
             itemImage = itemView.findViewById(R.id.item_imge);
             addOrder = itemView.findViewById(R.id.addToOrder);
+            price=itemView.findViewById(R.id.price);
 
         }
     }
@@ -159,29 +164,34 @@ for(int i=0;i<10;i++) {
             return new CViewHolder(view);
         }
 
+        @SuppressLint("SetTextI18n")
         @Override
         public void onBindViewHolder(@NonNull final CViewHolder cViewHolder, final int i) {
             cViewHolder.ItemName.setText(list.get(i).getItemName());
             cViewHolder.itemImage.setBackgroundResource(getImage(list.get(i).getDescription()));
-            cViewHolder.Qty.setText("" + SettingOrder.Item.get(SettingOrder.indexCat).get(i).getPrice());
+            cViewHolder.Qty.setText("" + SettingOrder.Item.get(SettingOrder.indexCat).get(i).getQTY());
+            cViewHolder.balance.setText("JD " + SettingOrder.Item.get(SettingOrder.indexCat).get(i).getTotal());
+            cViewHolder.price.setText("" + SettingOrder.Item.get(SettingOrder.indexCat).get(i).getPrice());
+
 
             cViewHolder.addOrder.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Items item = new Items();
-                    boolean isFound = updateIfInList(cViewHolder.ItemName.getText().toString(), Double.parseDouble(cViewHolder.Qty.getText().toString()),i);
+                    boolean isFound = updateIfInList(cViewHolder.ItemName.getText().toString(), Double.parseDouble(cViewHolder.Qty.getText().toString()),i,Double.parseDouble(cViewHolder.balance.getText().toString().replace("JD","")));
                     if (Double.parseDouble(cViewHolder.Qty.getText().toString()) != 0) {
                         if (!isFound) {
                             item.setItemName(cViewHolder.ItemName.getText().toString());
 //                    item.setItemPic(pic.get(i));
                             item.setCategoryName(catName.getText().toString());
-                            item.setPrice(Double.parseDouble(cViewHolder.Qty.getText().toString()));
+                            item.setQTY(Double.parseDouble(cViewHolder.Qty.getText().toString()));
                             item.setDescription(list.get(i).getDescription());
                             item.setIndexOfItem(i);
                             item.setIndexOfCat(SettingOrder.indexCat);
+                            item.setTotal(Double.parseDouble(cViewHolder.balance.getText().toString().replace("JD","")));
 
-
-                            SettingOrder.Item.get(SettingOrder.indexCat).get(i).setPrice(Double.parseDouble(cViewHolder.Qty.getText().toString()));
+                            SettingOrder.Item.get(SettingOrder.indexCat).get(i).setQTY(Double.parseDouble(cViewHolder.Qty.getText().toString()));
+                            SettingOrder.Item.get(SettingOrder.indexCat).get(i).setTotal(Double.parseDouble(cViewHolder.balance.getText().toString().replace("JD","")));
 
                             SettingOrder.ItemsOrder.add(item);
 
@@ -190,6 +200,9 @@ for(int i=0;i<10;i++) {
                                     SettingOrder.ItemsOrder.get(SettingOrder.index).getCategoryName());
 
                             SettingOrder.index += 1;
+
+                            motionEvent(list.get(i).getDescription());
+
                         } else {
                             Toast.makeText(context, "is Found ", Toast.LENGTH_SHORT).show();
                         }
@@ -233,8 +246,9 @@ for(int i=0;i<10;i++) {
                     newQty = oldQty;
                     newQty += 1;
 
-                    cViewHolder.Qty.setText("" + newQty);
 
+                    cViewHolder.Qty.setText("" + newQty);
+                    cViewHolder.balance.setText("JD " + (newQty*Double.parseDouble(cViewHolder.price.getText().toString())));
 
                 }
             });
@@ -252,6 +266,7 @@ for(int i=0;i<10;i++) {
                         cViewHolder.Qty.setText("0");
                         newQty -= 1;
                         cViewHolder.Qty.setText("" + newQty);
+                        cViewHolder.balance.setText("JD " + (newQty*Double.parseDouble(cViewHolder.price.getText().toString())));
                     } else {
                         Toast.makeText(context, "The Qty Value = 0 ", Toast.LENGTH_SHORT).show();
                     }
@@ -333,7 +348,8 @@ for(int i=0;i<10;i++) {
         public void onBindViewHolder(@NonNull final CViewItemHolder cViewItemHolder, final int i) {
             cViewItemHolder.itemName.setText(list.get(i).getItemName());
             cViewItemHolder.itemPic.setBackgroundResource(getImage(list.get(i).getDescription()));
-            cViewItemHolder.Qty.setText("" + list.get(i).getPrice());
+            cViewItemHolder.Qty.setText("" + list.get(i).getQTY());
+            cViewItemHolder.balance.setText("" + list.get(i).getTotal());
 
             //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -342,7 +358,8 @@ for(int i=0;i<10;i++) {
                 public void onClick(View v) {
 
                     Log.e("size before ", "" + SettingOrder.ItemsOrder.size() + "    " + i + "     " + list.get(i).getIndexOfItem());
-                    SettingOrder.Item.get(SettingOrder.indexCat).get(list.get(i).getIndexOfItem()).setPrice(0.0);
+                    SettingOrder.Item.get(SettingOrder.indexCat).get(list.get(i).getIndexOfItem()).setQTY(0.0);
+                    SettingOrder.Item.get(SettingOrder.indexCat).get(list.get(i).getIndexOfItem()).setTotal(0.0);
 
                     TestAdapter Ad = new TestAdapter(ItemActivaty.this, SettingOrder.Item.get(SettingOrder.indexCat));
                     recyclerView.setAdapter(Ad);
@@ -372,13 +389,17 @@ for(int i=0;i<10;i++) {
         return drawableResourceId;
     }
 
-    public boolean updateIfInList(String namePointer, double itemQty,int pointer) {
+    public boolean updateIfInList(String namePointer, double itemQty,int pointer,double itemTotal) {
         boolean isFound = false;
         for (int i = 0; i < SettingOrder.ItemsOrder.size(); i++) {
 
             if (namePointer.equals(SettingOrder.ItemsOrder.get(i).getItemName())) {
-                SettingOrder.Item.get(SettingOrder.indexCat).get(pointer).setPrice(itemQty);
-                SettingOrder.ItemsOrder.get(i).setPrice(itemQty);
+                SettingOrder.Item.get(SettingOrder.indexCat).get(pointer).setQTY(itemQty);
+                SettingOrder.ItemsOrder.get(i).setQTY(itemQty);
+
+                SettingOrder.Item.get(SettingOrder.indexCat).get(pointer).setTotal(itemTotal);
+                SettingOrder.ItemsOrder.get(i).setTotal(itemTotal);
+
                 isFound = true;
                 break;
             }
@@ -386,6 +407,27 @@ for(int i=0;i<10;i++) {
         }
         return isFound;
     }
+
+
+    public void motionEvent(String image){
+
+        mo1.setVisibility(View.VISIBLE);
+        mo1.setBackgroundResource(getImage(image));
+        int p1[] = new int[2];
+        int p2[] = new int[2];
+        orderImage.getLocationInWindow(p1);
+        mo1.getLocationInWindow(p2);
+
+        TranslateAnimation animation = new TranslateAnimation(0, orderImage.getX()- mo1.getX(),0 , orderImage.getY()- mo1.getY());
+        animation.setRepeatMode(0);
+        animation.setDuration(1000);
+        animation.setFillAfter(false);
+        mo1.startAnimation(animation);
+        mo1.setVisibility(View.INVISIBLE);
+
+
+    }
+
 
     @Override
     protected void onDestroy() {
