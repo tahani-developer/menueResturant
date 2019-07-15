@@ -23,6 +23,7 @@
                 android:id="@+id/catImage"
                 android:layout_width="40dp"
                 android:layout_height="60dp"
+                android:layout_margin="2dp"
                 android:layout_weight="1"
                 android:background="@drawable/burger"
                 app:srcCompat="@drawable/items_stroke" />
@@ -32,6 +33,7 @@
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:layout_margin="2dp"
                 android:background="@drawable/items_stroke"
                 android:fontFamily="cursive"
                 android:text="Category"
@@ -44,18 +46,19 @@
                 android:layout_width="40dp"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:layout_margin="2dp"
                 android:background="@drawable/items_stroke"
                 android:padding="5dp"
                 app:srcCompat="@drawable/order" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/back_2_layout" />
+        <!--<TextView-->
+            <!--android:id="@+id/textView7"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="3dp"-->
+            <!--android:layout_marginBottom="5dp"-->
+            <!--android:background="@drawable/back_2_layout" />-->
 
         <LinearLayout
             android:layout_width="match_parent"

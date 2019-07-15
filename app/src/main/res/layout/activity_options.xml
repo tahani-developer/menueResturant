@@ -178,6 +178,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_weight="4"
+                android:inputType="number"
                 android:hint="@string/no_of_seats"
                 android:padding="10dp"
                 android:textSize="30sp" />

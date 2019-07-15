@@ -35,7 +35,7 @@ import cdflynn.android.library.turn.TurnLayoutManager;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    private TextView UserNameText;
+    //    private TextView UserNameText;
     private LinearLayout swipeRefresh;
     private Button CallCaptain, makeOrder;
 
@@ -55,9 +55,9 @@ public class CategoryActivity extends AppCompatActivity {
         Intent userName = getIntent();
         String users = userName.getStringExtra("userName");
 
-        UserNameText = (TextView) findViewById(R.id.userName);
+//        UserNameText = (TextView) findViewById(R.id.userName);
 
-        UserNameText.setText(users);
+//        UserNameText.setText(users);
 //        baseHandler=new DatabaseHandler(CategoryActivity.this);
 //        categoryList=baseHandler.getAllItems();
         swipeRefresh = findViewById(R.id.swipeRefresh);
@@ -95,7 +95,7 @@ public class CategoryActivity extends AppCompatActivity {
                 TurnLayoutManager.Gravity.START,
                 TurnLayoutManager.Orientation.HORIZONTAL,
                 300,
-                310,
+                300,
                 false);
 
 

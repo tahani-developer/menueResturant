@@ -19,7 +19,7 @@ public class Items {
     public Items() {
     }
 
-    public Items(String categoryName, String itemName, int itemBarcode, Bitmap categoryPic, String description, double price, Bitmap itemPic,int indexOfItem,int indexOfCat,double Qty,double Total) {
+    public Items(String categoryName, String itemName, int itemBarcode, Bitmap categoryPic, String description, double price, Bitmap itemPic, int indexOfItem, int indexOfCat, double Qty, double Total) {
         this.categoryName = categoryName;
         this.itemName = itemName;
         this.itemBarcode = itemBarcode;
@@ -27,10 +27,10 @@ public class Items {
         this.description = description;
         this.price = price;
         this.ItemPic = itemPic;
-        this.indexOfItem=indexOfItem;
-        this.indexOfCat=indexOfCat;
-        this.QTY=Qty;
-        this.Total=Total;
+        this.indexOfItem = indexOfItem;
+        this.indexOfCat = indexOfCat;
+        this.QTY = Qty;
+        this.Total = Total;
     }
 
     public String getCategoryName() {
