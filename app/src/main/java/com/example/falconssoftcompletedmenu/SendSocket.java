@@ -43,20 +43,20 @@ public class SendSocket {
 //                    if (!kitchenScreens.get(i).getKitchenIP().equals("")) {//&& isHostAvailable(kitchenScreens.get(i).getKitchenIP(), 9002,100)
 //                            if (checkHosts("10.10.100.22")){
 //                            if (obj3.toString().length() > 2) {
-                                try {
-                                    String ip="10.10.100.21";
-                                    Socket  s = new Socket("10.10.100.21", 9008);
-                                    out = s.getOutputStream();
-                                    output = new PrintWriter(out);
-                                    output.println("table#"+" "+4+","+"SEC#"+" "+1+","+"#SITE"+" "+3);
-                                    output.flush();
-                                    Log.e("obj3 ","send");
-                                    output.close();
-                                    out.close();
-                                    s.close();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                try {
+                    String ip = "10.10.100.21";
+                    Socket s = new Socket("10.10.100.21", 9008);
+                    out = s.getOutputStream();
+                    output = new PrintWriter(out);
+                    output.println("table#" + " " + 4 + "," + "SEC#" + " " + 1 + "," + "#SITE" + " " + 3);
+                    output.flush();
+                    Log.e("obj3 ", "send");
+                    output.close();
+                    out.close();
+                    s.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 //                            }
 //                        }//
 
@@ -133,23 +133,22 @@ public class SendSocket {
 //        return objNo;
 //    }
 
-    public boolean checkHosts(String subnet){
-        int timeout=1000;
-        boolean fa=false;
-            try {
-                if (InetAddress.getByName(subnet).isReachable(timeout)){
-                    System.out.println(subnet + " is reachable");
-                    fa=true;
+    public boolean checkHosts(String subnet) {
+        int timeout = 1000;
+        boolean fa = false;
+        try {
+            if (InetAddress.getByName(subnet).isReachable(timeout)) {
+                System.out.println(subnet + " is reachable");
+                fa = true;
 
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                fa=false;
             }
-        Log.e("tesr3","fa ==>"+fa);
-            return fa;
+        } catch (IOException e) {
+            e.printStackTrace();
+            fa = false;
         }
-
+        Log.e("tesr3", "fa ==>" + fa);
+        return fa;
+    }
 
 
 }

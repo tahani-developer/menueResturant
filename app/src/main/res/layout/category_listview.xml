@@ -29,15 +29,15 @@
                     android:id="@+id/imageView"
                     android:layout_width="50dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="5dp"
+                    android:layout_margin="10dp"
                     app:srcCompat="@drawable/icon_user" />
 
                 <TextView
                     android:id="@+id/userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:text="Admin"
+                    android:layout_marginTop="15dp"
                     android:textColor="@color/white_dark"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -73,6 +73,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/waiter"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/back_2_layout"
                     android:text="Call Captain"
                     android:textColor="@color/white_dark" />
@@ -82,6 +88,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:drawableLeft="@drawable/dinner"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginRight="2dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginBottom="1dp"
                     android:background="@drawable/back_2_layout"
                     android:text="make Order"
                     android:textColor="@color/white_dark" />
@@ -89,5 +101,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>
