@@ -2,6 +2,7 @@ package com.example.falconssoftcompletedmenu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
@@ -84,16 +85,16 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.options_done:
-                if (!TextUtils.isEmpty(editTextNoOfSeats.getText().toString())){
-                    if ((SettingOrder.staticTableNo != 0) && (SettingOrder.staticNoOfSeits != 0)) //(!SettingOrder.staticSectionNo.equals("")) &&
-                        SettingOrder.staticNoOfSeits = Integer.parseInt(editTextNoOfSeats.getText().toString());
-                        Log.e("", "table " + SettingOrder.staticTableNo + " section " + SettingOrder.staticSectionNo + " seits " + SettingOrder.staticNoOfSeits);
-                        Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
-                        categoryIntent.putExtra("userName", users);
-                        startActivity(categoryIntent);
-                    } else {
-                        Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show();
-                    }
+                if (!TextUtils.isEmpty(editTextNoOfSeats.getText().toString())) {
+                    if ((SettingOrder.staticTableNo != 0) && (SettingOrder.staticNoOfSeits != 0))  //(!SettingOrder.staticSectionNo.equals("")) &&
+                    SettingOrder.staticNoOfSeits = Integer.parseInt(editTextNoOfSeats.getText().toString());
+                    Log.e("", "table " + SettingOrder.staticTableNo + " section " + SettingOrder.staticSectionNo + " seits " + SettingOrder.staticNoOfSeits);
+                    Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
+                    categoryIntent.putExtra("userName", users);
+                    startActivity(categoryIntent);
+                } else {
+                    Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.options_add_floor:
 //                if (flagTable == 1)

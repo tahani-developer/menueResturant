@@ -3,6 +3,7 @@ package com.example.falconssoftcompletedmenu.category;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,6 +45,7 @@ public class CategoryActivity extends AppCompatActivity {
     private List<String> pic = new ArrayList<>();
     private TurnLayoutManager layoutManager = null;
     private RecyclerView recyclerView;
+    private MediaPlayer mediaPlayer;
 
     int position;
 
@@ -133,6 +135,8 @@ public class CategoryActivity extends AppCompatActivity {
         CallCaptain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               mediaPlayer = MediaPlayer.create(CategoryActivity.this, R.raw.bell);
+                mediaPlayer.start();
 
                 SendSocket sendSocket = new SendSocket(CategoryActivity.this);
                 sendSocket.sendMessage();
