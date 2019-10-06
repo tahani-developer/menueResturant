@@ -133,22 +133,22 @@ public class SendSocket {
 //        return objNo;
 //    }
 
-    public boolean checkHosts(String subnet){
-        int timeout=1000;
-        boolean fa=false;
-            try {
-                if (InetAddress.getByName(subnet).isReachable(timeout)){
-                    System.out.println(subnet + " is reachable");
-                    fa=true;
+    public boolean checkHosts(String subnet) {
+        int timeout = 1000;
+        boolean fa = false;
+        try {
+            if (InetAddress.getByName(subnet).isReachable(timeout)) {
+                System.out.println(subnet + " is reachable");
+                fa = true;
 
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-                fa=false;
             }
-        Log.e("tesr3","fa ==>"+fa);
-            return fa;
+        } catch (IOException e) {
+            e.printStackTrace();
+            fa = false;
         }
+        Log.e("tesr3", "fa ==>" + fa);
+        return fa;
+    }
 
 
 

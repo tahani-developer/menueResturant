@@ -2,6 +2,7 @@ package com.example.falconssoftcompletedmenu;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
@@ -13,8 +14,10 @@ import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -49,6 +52,9 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
         databaseHandler = new DatabaseHandler(this);
         filList();
 
@@ -79,16 +85,16 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
 
         switch (v.getId()) {
             case R.id.options_done:
-                if (!TextUtils.isEmpty(editTextNoOfSeats.getText().toString())){
-                    if ((SettingOrder.staticTableNo != 0) && (SettingOrder.staticNoOfSeits != 0)) //(!SettingOrder.staticSectionNo.equals("")) &&
-                        SettingOrder.staticNoOfSeits = Integer.parseInt(editTextNoOfSeats.getText().toString());
-                        Log.e("", "table " + SettingOrder.staticTableNo + " section " + SettingOrder.staticSectionNo + " seits " + SettingOrder.staticNoOfSeits);
-                        Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
-                        categoryIntent.putExtra("userName", users);
-                        startActivity(categoryIntent);
-                    } else {
-                        Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show();
-                    }
+                if (!TextUtils.isEmpty(editTextNoOfSeats.getText().toString())) {
+                    if ((SettingOrder.staticTableNo != 0) && (SettingOrder.staticNoOfSeits != 0))  //(!SettingOrder.staticSectionNo.equals("")) &&
+                    SettingOrder.staticNoOfSeits = Integer.parseInt(editTextNoOfSeats.getText().toString());
+                    Log.e("", "table " + SettingOrder.staticTableNo + " section " + SettingOrder.staticSectionNo + " seits " + SettingOrder.staticNoOfSeits);
+                    Intent categoryIntent = new Intent(OptionsActivity.this, CategoryActivity.class);
+                    categoryIntent.putExtra("userName", users);
+                    startActivity(categoryIntent);
+                } else {
+                    Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.options_add_floor:
 //                if (flagTable == 1)

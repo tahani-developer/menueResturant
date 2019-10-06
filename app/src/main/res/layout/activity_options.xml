@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="100dp"
             android:layout_marginEnd="70dp"
             android:layout_marginRight="70dp"
             android:background="@drawable/items_stroke"
@@ -56,18 +56,16 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="115dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    app:civ_border_color="@color/white_dark"
-                    app:civ_border_width="1dp"
-                    android:layout_margin="2dp"
                     android:src="@drawable/stairs" />
 
                 <TextView
                     android:id="@+id/options_floorNo_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:layout_weight="3"
                     android:padding="10dp"
                     android:text="@string/floor_no"
@@ -77,6 +75,7 @@
                     android:id="@+id/options_add_floor"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/ic_keyboard_arrow_down_yellow_24dp" />
             </TableRow>
 
@@ -101,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="70dp"
             android:layout_marginRight="70dp"
             android:background="@drawable/items_stroke"
@@ -114,18 +113,16 @@
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="0dp"
-                    android:layout_height="120dp"
+                    android:layout_height="115dp"
+                    android:layout_margin="5dp"
                     android:layout_weight="1"
-                    app:civ_border_color="@color/white_dark"
-                    app:civ_border_width="1dp"
-                    android:layout_margin="2dp"
                     android:src="@drawable/table" />
 
                 <TextView
                     android:id="@+id/options_tableNo_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:layout_weight="3"
                     android:padding="10dp"
                     android:text="@string/table_no"
@@ -135,6 +132,7 @@
                     android:id="@+id/options_add_table"
                     android:layout_width="80dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
                     android:background="@drawable/ic_keyboard_arrow_down_yellow_24dp" />
             </TableRow>
 
@@ -159,29 +157,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="70dp"
             android:layout_marginLeft="70dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="70dp"
             android:layout_marginRight="70dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="50dp"
             android:background="@drawable/items_stroke"
             android:orientation="horizontal"
             android:padding="5dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="0dp"
-                android:layout_height="120dp"
+                android:layout_height="115dp"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
-                app:civ_border_color="@color/white_dark"
-                app:civ_border_width="1dp"
-                android:layout_margin="2dp"
                 android:src="@drawable/chair" />
 
             <EditText
                 android:id="@+id/options_noOfSeats_ET"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="3"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_weight="4"
+                android:inputType="number"
                 android:hint="@string/no_of_seats"
                 android:padding="10dp"
                 android:textSize="30sp" />
@@ -190,15 +189,14 @@
 
         <Button
             android:id="@+id/options_done"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginLeft="130dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="220dp"
+            android:layout_marginLeft="220dp"
             android:layout_marginEnd="130dp"
             android:layout_marginRight="130dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/btn_background"
-            android:padding="10dp"
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/bell"
             android:text="@string/done"
             android:textAllCaps="false"
             android:textColor="@color/white_dark"

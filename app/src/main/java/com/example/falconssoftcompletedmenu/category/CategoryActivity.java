@@ -3,6 +3,7 @@ package com.example.falconssoftcompletedmenu.category;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -35,15 +36,18 @@ import cdflynn.android.library.turn.TurnLayoutManager;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    TextView UserNameText;
-    LinearLayout swipeRefresh;
-    Button CallCaptain,makeOrder;
+    //    private TextView UserNameText;
+    private LinearLayout swipeRefresh;
+    private Button CallCaptain, makeOrder;
 
-
-    public List<String> list = new ArrayList<>();
+    private List<String> list = new ArrayList<>();
     //    public List<Items> categoryList = new ArrayList<>();
-    List<String> pic = new ArrayList<>();
-    int po;
+    private List<String> pic = new ArrayList<>();
+    private TurnLayoutManager layoutManager = null;
+    private RecyclerView recyclerView;
+    private MediaPlayer mediaPlayer;
+
+    int position;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -53,28 +57,29 @@ public class CategoryActivity extends AppCompatActivity {
         Intent userName = getIntent();
         String users = userName.getStringExtra("userName");
 
-        UserNameText=(TextView)findViewById(R.id.userName);
+//        UserNameText = (TextView) findViewById(R.id.userName);
 
-        UserNameText.setText(users);
+//        UserNameText.setText(users);
 //        baseHandler=new DatabaseHandler(CategoryActivity.this);
 //        categoryList=baseHandler.getAllItems();
         swipeRefresh = findViewById(R.id.swipeRefresh);
-        CallCaptain=findViewById(R.id.call);
-        makeOrder=findViewById(R.id.makeOrder);
+        CallCaptain = findViewById(R.id.call);
+        makeOrder = findViewById(R.id.makeOrder);
 
-        list.add("Burger1");
-        list.add("Burger2");
-        list.add("Burger3");
-        list.add("Burger4");
-        list.add("Burger5");
-        list.add("Burger6");
-        list.add("Burger7");
-        list.add("Burger8");
-        list.add("Burger9");
-        list.add("Burger10");
+//        list.add("");
+        list.add("Barbecue");
+        list.add("Chips");
+        list.add("Fish finger");
+        list.add("Chips");
+        list.add("Cookies");
+        list.add("Barbecue");
+        list.add("Turkey Sandwich");
+        list.add("Fried Potato");
+        list.add("Burger");
+        list.add("Fried Potato");
+//        list.add("");
 
-
-
+//        pic.add("");
         pic.add("fw");
         pic.add("der");
         pic.add("mozaral");
@@ -85,18 +90,18 @@ public class CategoryActivity extends AppCompatActivity {
         pic.add("botato");
         pic.add("burger");
         pic.add("botato");
+//        pic.add("");
 
         // vertical and cycle layout
-        final TurnLayoutManager layoutManager;
         layoutManager = new TurnLayoutManager(this,
                 TurnLayoutManager.Gravity.START,
                 TurnLayoutManager.Orientation.HORIZONTAL,
-                300,
-                300,
-                false);
+                200,
+                200,
+                true);
 
 
-        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.categoryRecycler);
+        recyclerView = (RecyclerView) findViewById(R.id.categoryRecycler);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new TestAdapter(this, list));
@@ -104,26 +109,18 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Log.e("itemRec", "");
-
             }
         });
 
         makeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 SettingOrder.Item.clear();
                 SettingOrder.ItemsOrder.clear();
-                SettingOrder.index=0;
-
-
+                SettingOrder.index = 0;
             }
         });
-
-//
-
 
 //          swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 //                           @Override
@@ -133,30 +130,24 @@ public class CategoryActivity extends AppCompatActivity {
 //                              swipeRefresh.setRefreshing(false);
 //                           }
 //        swipeRefresh.setRefreshing(false);
-//
-//
 //    }
-
 
         CallCaptain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               mediaPlayer = MediaPlayer.create(CategoryActivity.this, R.raw.bell);
+                mediaPlayer.start();
 
-                SendSocket sendSocket=new SendSocket(CategoryActivity.this);
+                SendSocket sendSocket = new SendSocket(CategoryActivity.this);
                 sendSocket.sendMessage();
-
             }
         });
     }
 
-
-
     class CViewHolder extends RecyclerView.ViewHolder {
-
         TextView categoryName;
         ImageView categoryImage;
         LinearLayout layMain;
-
 
         public CViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -165,7 +156,6 @@ public class CategoryActivity extends AppCompatActivity {
             layMain = itemView.findViewById(R.id.layMain);
         }
     }
-
 
     class TestAdapter extends RecyclerView.Adapter<CViewHolder> {
         Context context;
@@ -190,7 +180,7 @@ public class CategoryActivity extends AppCompatActivity {
             cViewHolder.categoryName.setText(list.get(i));
 //            cViewHolder.layMain.setId(i);
 //        cViewHolder.categoryName.setText(list.get(i).getCategoryName());
-        cViewHolder.categoryImage.setBackgroundResource(getImage(pic.get(i)));
+            cViewHolder.categoryImage.setBackgroundResource(getImage(pic.get(i)));
 
 
             cViewHolder.layMain.setOnClickListener(new View.OnClickListener() {
@@ -199,11 +189,11 @@ public class CategoryActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Log.e("item ...", "i" + v.getId() + "-->" + i + "===>" + list.get(i));
 
-                Intent itemIntent=new Intent(context,ItemActivaty.class);
-                itemIntent.putExtra("categoryName",list.get(i));
-                itemIntent.putExtra("catPic",pic.get(i));
-                context.startActivity(itemIntent);
-                    SettingOrder.indexCat=i;
+                    Intent itemIntent = new Intent(context, ItemActivaty.class);
+                    itemIntent.putExtra("categoryName", list.get(i));
+                    itemIntent.putExtra("catPic", pic.get(i));
+                    context.startActivity(itemIntent);
+                    SettingOrder.indexCat = i;
 //                CustomIntent.customType(context,"left-to-right");
 //             //   bottom-to-up "left-to-right"
 //                /**left-to-right
@@ -214,8 +204,6 @@ public class CategoryActivity extends AppCompatActivity {
 //                 *rotateout-to-rotatein*/
                 }
             });
-
-
         }
 
         @Override
@@ -223,13 +211,11 @@ public class CategoryActivity extends AppCompatActivity {
             return list.size();
 //            return Integer.MAX_VALUE;
         }
-
     }
 
     public int getImage(String imageName) {
 
-        int drawableResourceId =CategoryActivity.this.getResources().getIdentifier(imageName, "drawable", CategoryActivity.this.getPackageName());
-
+        int drawableResourceId = CategoryActivity.this.getResources().getIdentifier(imageName, "drawable", CategoryActivity.this.getPackageName());
         return drawableResourceId;
     }
 

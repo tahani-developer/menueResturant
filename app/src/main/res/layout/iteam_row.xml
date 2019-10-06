@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
-    android:padding="30dp"
-    android:layoutDirection="ltr">
+    android:padding="30dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
 
         <ImageButton
             android:id="@+id/item_imge"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="280dp"
             android:layout_gravity="center"
             android:background="@drawable/botato" />
@@ -110,7 +110,6 @@
                     android:text="-"
                     android:textColor="@color/white_dark"
                     android:textSize="30sp"
-
                     />
 
                 <TextView
@@ -118,6 +117,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginRight="3dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginEnd="3dp"
                     android:background="@drawable/alpha_frame"
                     android:gravity="center"
                     android:text="0"
@@ -131,6 +134,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:layout_marginRight="6dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginEnd="6dp"
                     android:background="@drawable/alpha_frame"
                     android:gravity="center"
                     android:text="+"
