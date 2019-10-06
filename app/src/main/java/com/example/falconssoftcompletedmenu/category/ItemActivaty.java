@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -175,6 +177,7 @@ for(int i=0;i<10;i++) {
 
 
             cViewHolder.addOrder.setOnClickListener(new View.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                 @Override
                 public void onClick(View v) {
                     Items item = new Items();
@@ -409,6 +412,7 @@ for(int i=0;i<10;i++) {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     public void motionEvent(String image){
 
         mo1.setVisibility(View.VISIBLE);
